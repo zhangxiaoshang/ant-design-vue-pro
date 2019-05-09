@@ -1,5 +1,5 @@
 <template>
-  <div>Footer</div>
+  <div>Ant Design Vue Pro ©2019 Created by Ant BolingBoling</div>
 </template>
 
 <script>
