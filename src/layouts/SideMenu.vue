@@ -25,6 +25,7 @@
  * SubMenu1.vue https://github.com/vueComponent/ant-design-vue/blob/master/components/menu/demo/SubMenu1.vue
  * */
 import SubMenu from "./SubMenu";
+import { check } from "@/utils/auth";
 
 export default {
   props: {
@@ -40,45 +41,7 @@ export default {
     const menuData = this._getMenuData(this.$router.options.routes);
     return {
       collapsed: false,
-      menuData: menuData,
-      list: [
-        {
-          key: "1",
-          title: "仪表盘",
-          children: [
-            {
-              key: "1.1",
-              title: "分析页"
-            },
-            {
-              key: "1.2",
-              title: "监控页"
-            },
-            {
-              key: "1.3",
-              title: "工作台"
-            }
-          ]
-        },
-        {
-          key: "2",
-          title: "表单",
-          children: [
-            {
-              key: "2.1",
-              title: "基础表单"
-            },
-            {
-              key: "2.2",
-              title: "分步表单"
-            },
-            {
-              key: "2.3",
-              title: "高级表单"
-            }
-          ]
-        }
-      ]
+      menuData: menuData
     };
   },
   mounted() {
@@ -90,7 +53,10 @@ export default {
     },
     _getMenuData(routes) {
       let menuData = [];
-      routes.forEach(item => {
+      for (let item of routes) {
+        if (item.meta && item.meta.authority && !check(item.meta.authority)) {
+          break;
+        }
         if (!item.hideInMenu && item.name) {
           const newItem = { ...item };
           delete newItem.children;
@@ -104,10 +70,9 @@ export default {
           !item.hideChildrenInMenu &&
           item.children
         ) {
-          console.log(item.path);
           menuData.push(...this._getMenuData(item.children));
         }
-      });
+      }
 
       return menuData;
     },
