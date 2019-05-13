@@ -13,6 +13,7 @@ const router = new Router({
     {
       path: "/user",
       name: "user",
+      hideInMenu: true,
       component: () =>
         import(/* webpackChunkName: "layout" */ "./layouts/UserLayout.vue"),
       children: [
@@ -44,8 +45,9 @@ const router = new Router({
           redirect: "/dashboard/analysis"
         },
         {
-          path: "dashboard",
+          path: "/dashboard",
           name: "dashboard",
+          meta: { icon: "dashboard", title: "仪表盘" },
           component: {
             render: h => h("router-view")
           },
@@ -53,43 +55,54 @@ const router = new Router({
             {
               path: "/dashboard/analysis",
               name: "analysis",
+              meta: { title: "分析页" },
               component: () =>
-                import(/* webpackChunkName: "dashboard" */ "./views/Dashboard/Analysis.vue")
+                import(
+                  /* webpackChunkName: "dashboard" */ "./views/Dashboard/Analysis.vue"
+                )
             },
             {
               path: "/dashboard/monitor",
               name: "monitor",
+              meta: { title: "监控页" },
               component: () =>
-                import(/* webpackChunkName: "dashboard" */ "./views/Dashboard/Monitor.vue")
+                import(
+                  /* webpackChunkName: "dashboard" */ "./views/Dashboard/Monitor.vue"
+                )
             },
             {
               path: "/dashboard/workplace",
               name: "workplace",
+              meta: { title: "工作站" },
               component: () =>
-                import(/* webpackChunkName: "dashboard" */ "./views/Dashboard/Workplace.vue")
+                import(
+                  /* webpackChunkName: "dashboard" */ "./views/Dashboard/Workplace.vue"
+                )
             }
           ]
         },
         {
           path: "/form",
           name: "form",
+          meta: { icon: "form", title: "表单" },
           component: {
             render: h => h("router-view")
           },
           children: [
             {
-              path: "/form",
-              redirect: "/form/basic-form"
-            },
-            {
               path: "/form/basic-form",
               name: "basicform",
+              meta: { title: "基础表单" },
               component: () =>
-                import(/* webpackChunkName: "form" */ "./views/Forms/BasicForm.vue")
+                import(
+                  /* webpackChunkName: "form" */ "./views/Forms/BasicForm.vue"
+                )
             },
             {
               path: "/form/step-form",
               name: "stepform",
+              meta: { title: "分步表单" },
+              hideChildrenInMenu: true,
               component: {
                 render: h => h("router-view")
               },
@@ -102,27 +115,36 @@ const router = new Router({
                   path: "/form/step-form/info",
                   name: "info",
                   component: () =>
-                    import(/* webpackChunkName: "form" */ "./views/Forms/StepForm/Step1")
+                    import(
+                      /* webpackChunkName: "form" */ "./views/Forms/StepForm/Step1"
+                    )
                 },
                 {
                   path: "/form/step-form/confirm",
                   name: "confirm",
                   component: () =>
-                    import(/* webpackChunkName: "form" */ "./views/Forms/StepForm/Step2")
+                    import(
+                      /* webpackChunkName: "form" */ "./views/Forms/StepForm/Step2"
+                    )
                 },
                 {
                   path: "/form/step-form/result",
                   name: "result",
                   component: () =>
-                    import(/* webpackChunkName: "form" */ "./views/Forms/StepForm/Step3")
+                    import(
+                      /* webpackChunkName: "form" */ "./views/Forms/StepForm/Step3"
+                    )
                 }
               ]
             },
             {
               path: "/form/advanced-form",
               name: "advancedform",
+              meta: { title: "高级表单" },
               component: () =>
-                import(/* webpackChunkName: "form" */ "./views/Forms/AdvancedForm.vue")
+                import(
+                  /* webpackChunkName: "form" */ "./views/Forms/AdvancedForm.vue"
+                )
             }
           ]
         }
@@ -132,6 +154,7 @@ const router = new Router({
     {
       path: "*",
       name: "404",
+      hideInMenu: true,
       component: NotFond
     }
   ]
