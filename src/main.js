@@ -1,5 +1,14 @@
 import Vue from "vue";
-import { Layout, Button, Icon, Drawer, Radio, Menu } from "ant-design-vue";
+import {
+  Layout,
+  Button,
+  Icon,
+  Drawer,
+  Radio,
+  Menu,
+  Form,
+  Input
+} from "ant-design-vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
@@ -14,6 +23,8 @@ Vue.use(Icon);
 Vue.use(Drawer);
 Vue.use(Radio);
 Vue.use(Menu);
+Vue.use(Form);
+Vue.use(Input);
 Vue.component("Authorized", Authorized);
 Vue.use(Auth);
 
