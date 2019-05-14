@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-form :layout="formLayout">
+    <a-form :layout="formLayout" :form="form">
       <a-form-item
         label="Form Layout"
         :label-col="formItemLayout.labelCol"
@@ -19,10 +19,20 @@
         label="Field A"
         :label-col="formItemLayout.labelCol"
         :wrapper-col="formItemLayout.wrapperCol"
-        :validate-status="fieldAStatus"
-        :help="fieldAHelp"
       >
-        <a-input v-model="fieldA" placeholder="input placeholder" />
+        <a-input
+          v-decorator="[
+            'fieldA',
+            {
+              initialValue: 'hello',
+              rules: [
+                { required: true, message: '必须输入 fieldA' },
+                { min: 6, message: '长度至少为6' }
+              ]
+            }
+          ]"
+          placeholder="input placeholder"
+        />
       </a-form-item>
       <a-form-item
         label="Field B"
@@ -43,22 +53,19 @@ export default {
   data() {
     return {
       formLayout: "horizontal",
-      fieldA: "",
-      fieldAStatus: "",
-      fieldAHelp: ""
+      form: this.$form.createForm(this),
+      fieldA: ""
     };
   },
-  watch: {
-    fieldA(val) {
-      if (val.length < 5) {
-        this.fieldAStatus = "error";
-        this.fieldAHelp = "长度要大于5";
-      } else {
-        this.fieldAStatus = "";
-        this.fieldAHelp = "";
-      }
-    }
+
+  mounted() {
+    setTimeout(() => {
+      this.form.setFieldsValue({
+        fieldA: "hello world"
+      });
+    }, 3000);
   },
+
   computed: {
     formItemLayout() {
       const { formLayout } = this;
@@ -83,15 +90,13 @@ export default {
       this.formLayout = e.target.value;
     },
     handleSumbit() {
-      if (this.fieldA.length < 5) {
-        this.fieldAStatus = "error";
-        this.fieldAHelp = "长度要大于5";
-      } else {
-        console.log({
-          fieldAStatus: this.fieldAStatus,
-          fieldAHelp: this.fieldAHelp
-        });
-      }
+      this.form.validateFields((err, value) => {
+        if (!err) {
+          Object.assign(this, value);
+        } else {
+          console.log("value", value);
+        }
+      });
     }
   }
 };
