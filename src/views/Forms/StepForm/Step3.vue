@@ -1,5 +1,5 @@
 <template>
-  <div>Step3Form</div>
+  <div>预计两小时到账</div>
 </template>
 
 <script>

@@ -11,7 +11,7 @@ import {
 } from "ant-design-vue";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store";
+import store from "./store/index";
 import Authorized from "./components/Authorized";
 import Auth from "@/directives/auth";
 
