@@ -18,6 +18,10 @@ import Auth from "@/directives/auth";
 
 Vue.config.productionTip = false;
 
+const IconFont = Icon.createFromIconfontCN({
+  scriptUrl: "//at.alicdn.com/t/font_1193785_7wawvfdx0ps.js"
+});
+
 Vue.use(Layout);
 Vue.use(Button);
 Vue.use(Icon);
@@ -27,6 +31,7 @@ Vue.use(Menu);
 Vue.use(Form);
 Vue.use(Input);
 Vue.use(Select);
+Vue.component("IconFont", IconFont);
 Vue.component("Authorized", Authorized);
 Vue.use(Auth);
 
