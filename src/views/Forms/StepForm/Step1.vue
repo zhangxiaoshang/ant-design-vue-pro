@@ -17,6 +17,34 @@
     </a-form-item>
 
     <a-form-item
+      :label-col="formItemLayout.labelCol"
+      :wrapper-col="formItemLayout.wrapperCol"
+      label="收款账户"
+    >
+      <ReceiverAccount
+        v-decorator="[
+          'receiverAccount',
+          {
+            initialValue: step.receiverAccount,
+            rules: [
+              {
+                required: true,
+                message: '请输入收款账号',
+                validator: (rule, value, callback) => {
+                  if (value && value.number) {
+                    callback();
+                  } else {
+                    callback(false);
+                  }
+                }
+              }
+            ]
+          }
+        ]"
+      />
+    </a-form-item>
+
+    <a-form-item
       :label-col="formTailLayout.labelCol"
       :wrapper-col="formTailLayout.wrapperCol"
     >
@@ -26,6 +54,7 @@
 </template>
 
 <script>
+import ReceiverAccount from "@/components/ReceiverAccount";
 const formItemLayout = {
   labelCol: { span: 4 },
   wrapperCol: { span: 8 }
@@ -35,6 +64,9 @@ const formTailLayout = {
   wrapperCol: { span: 8, offset: 4 }
 };
 export default {
+  components: {
+    ReceiverAccount
+  },
   data() {
     return {
       checkNick: false,
@@ -42,6 +74,11 @@ export default {
       formTailLayout,
       form: this.$form.createForm(this)
     };
+  },
+  computed: {
+    step() {
+      return this.$store.state.form.step;
+    }
   },
   methods: {
     handleSubmit() {
