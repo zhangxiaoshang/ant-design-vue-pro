@@ -13,7 +13,7 @@ import {
   Pagination,
   LocaleProvider,
   Dropdown,
-  Calendar
+  DatePicker
 } from "ant-design-vue";
 import App from "./App.vue";
 import router from "./router";
@@ -42,7 +42,7 @@ Vue.use(Select);
 Vue.use(Pagination);
 Vue.use(LocaleProvider);
 Vue.use(Dropdown);
-Vue.use(Calendar);
+Vue.use(DatePicker);
 Vue.component("IconFont", IconFont);
 Vue.component("Authorized", Authorized);
 Vue.use(Auth);

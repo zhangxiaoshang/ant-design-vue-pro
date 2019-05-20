@@ -8711,7 +8711,8 @@ vue-style-loader@^4.1.0:
 
 vue-svg-loader@^0.12.0:
   version "0.12.0"
-  resolved "https://registry.npm.taobao.org/vue-svg-loader/download/vue-svg-loader-0.12.0.tgz#5ea97d021edd3023236b92f96c3aba433b5d428b"
+  resolved "https://registry.yarnpkg.com/vue-svg-loader/-/vue-svg-loader-0.12.0.tgz#5ea97d021edd3023236b92f96c3aba433b5d428b"
+  integrity sha512-pg8H6iKCj+DAC7FZuxdfGJMHiFpJPv/YyoN1M7Iqlf+Hu4eU6Q/W/sEFx978syQA+aOx0NXrp+uQUAajqQvXbQ==
   dependencies:
     loader-utils "^1.2.3"
     svg-to-vue "^0.4.0"

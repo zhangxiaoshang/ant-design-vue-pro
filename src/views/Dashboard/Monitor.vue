@@ -4,20 +4,11 @@
     <a-pagination
       showSizeChanger
       :pageSize.sync="pageSize"
-      @showSizeChange="onShowSizeChange"
       :total="500"
       v-model="current"
     />
 
-    <div
-      :style="{
-        width: '300px',
-        border: '1px solid #d9d9d9',
-        borderRadius: '4px'
-      }"
-    >
-      <a-calendar :fullscreen="false" />
-    </div>
+    <a-date-picker />
   </div>
 </template>
 
@@ -29,11 +20,7 @@ export default {
       current: 4
     };
   },
-  methods: {
-    onShowSizeChange(current, pageSize) {
-      console.log(current, pageSize);
-    }
-  }
+  methods: {}
 };
 </script>
 
