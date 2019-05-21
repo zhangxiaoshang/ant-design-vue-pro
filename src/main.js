@@ -1,4 +1,6 @@
 import Vue from "vue";
+import VueHighlightJS from "vue-highlightjs";
+import "highlight.js/styles/github.css";
 import VueI18n from "vue-i18n";
 import {
   Layout,
@@ -29,6 +31,7 @@ const IconFont = Icon.createFromIconfontCN({
   scriptUrl: "//at.alicdn.com/t/font_1193785_7wawvfdx0ps.js"
 });
 
+Vue.use(VueHighlightJS);
 Vue.use(VueI18n);
 Vue.use(Layout);
 Vue.use(Button);
